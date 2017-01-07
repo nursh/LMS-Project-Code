@@ -1,0 +1,14 @@
+body {
+  background-color: #FDFDFD;
+}
+
+form {
+  background-color: #F3F3F3;
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+#forgotpassword {
+  padding-left: 2em;
+  float: right;
+}
