@@ -2,15 +2,15 @@ let express = require('express'),
     router = express.Router();
 
 router.get('/', function(req, res) {
-  res.render('index');
+  res.render('index', {layout: false});
 });
 
 router.get('/sign-in', function(req, res) {
-  res.render('sign-in');
+  res.render('sign-in', {layout: false});
 });
 
 router.get('/register', function(req, res) {
-  res.render('register');
+  res.render('register', {layout: false});
 })
 
 

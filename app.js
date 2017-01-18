@@ -2,23 +2,33 @@ let express = require('express'),
     path = require('path'),
     app = express(),
     router = express.Router(),
+    bodyParser = require('body-parser'),
+    validator = require('express-validator')
+    hbs =  require('express-handlebars'),
     port = process.env.PORT || 8080;
+
+
+
 
 //handling routes
 let routes = require('./routes/index');
 app.use('/', routes);
 
+//body-parser middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(validator());
+
 
 //view engines
-app.engine('.html', require('ejs').__express);
-app.set('views', __dirname + '/views/layout');
-app.set('view engine', 'html');
+app.engine('handlebars',  hbs({defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
 
 //public files
 app.use(express.static(path.join(__dirname, '/public')));
-app.use(express.static(path.join(__dirname, '/views/layout')));
+app.use(express.static(path.join(__dirname, '/views')));
 
 
 app.listen(port,function(){
-    console.log('The fronted server is running at port:' + port);
+    console.log('The frontend server is running at port:' + port);
 });
