@@ -59,7 +59,7 @@ router.post('/sign-in', function(req, res) {
     }
 });
 
-router.post('/regsubmit', function(req, res) {
+router.post('/submit', function(req, res) {
   req.check('name',  'Name should not be empty or contain numbers').matches(/^[A-Za-z\s]+$/);
   req.check('email', 'Email should not be empty or is invalid').isEmail();
   req.check('password', 'Password length must be greater than 6').isLength({min: 6});
@@ -80,7 +80,7 @@ router.post('/regsubmit', function(req, res) {
       register.userExists(User, function(exists){
         if(!exists) {
           req.session.success = true;
-          user.registerUser(User);
+          register.registerUser(User);
           res.redirect('sign-in');
         } else {
           req.session.exists = 'User is already registered';
