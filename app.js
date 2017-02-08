@@ -3,22 +3,23 @@ let express = require('express'),
     app = express(),
     router = express.Router(),
     bodyParser = require('body-parser'),
-    validator = require('express-validator')
+    cookieParser = require('cookie-parser'),
+    validator = require('express-validator'),
+    session = require('express-session'),
     hbs =  require('express-handlebars'),
     port = process.env.PORT || 8080;
 
-
-
-
-//handling routes
-let routes = require('./routes/index');
-app.use('/', routes);
 
 //body-parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(validator());
+app.use(cookieParser());
+app.use(session({secret: "test", saveUninitialized: false, resave: false}));
 
+//handling routes
+let routes = require('./routes/index');
+app.use('/', routes);
 
 //view engines
 app.engine('handlebars',  hbs({defaultLayout: 'main'}));
