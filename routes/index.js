@@ -64,7 +64,6 @@ router.post('/submit', function(req, res) {
   req.check('email', 'Email should not be empty or is invalid').isEmail();
   req.check('password', 'Password length must be greater than 6').isLength({min: 6});
   req.check('confirmPassword', 'Confirm Password does not match Password').equals(req.body.password);
-
   let errors = req.validationErrors();
     if(errors) {
       req.session.errors = errors;
