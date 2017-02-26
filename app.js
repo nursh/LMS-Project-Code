@@ -19,10 +19,14 @@ app.use(session({secret: "test", saveUninitialized: false, resave: false}));
 
 //handling routes
 let routes = require('./routes/index');
+let teacher = require('./routes/teacher');
+let student = require('./routes/student');
 app.use('/', routes);
+app.use('/teacher', teacher);
+app.use('/student', student);
 
 //view engines
-app.engine('handlebars',  hbs({defaultLayout: 'main'}));
+app.engine('handlebars',  hbs({defaultLayout: 'main', layoutsDir: __dirname + '/views/layout'}));
 app.set('view engine', 'handlebars');
 
 //public files

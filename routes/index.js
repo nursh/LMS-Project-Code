@@ -15,13 +15,6 @@ router.get('/register', function(req, res) {
   res.render('register', {layout: false,  success: req.session.success, errors: req.session.errors, exists: req.session.exists});
 });
 
-router.get('/student', function(req, res) {
-  res.render('student', {layout: false, name: req.session.name});
-});
-
-router.get('/teacher', function(req, res) {
-  res.render('teacher', {layout: false, name: req.session.name});
-});
 
 router.post('/sign-in', function(req, res) {
   req.check('email', 'Email is not valid').isEmail();
