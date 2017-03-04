@@ -3,7 +3,7 @@ let express = require('express'),
 
 
 router.get('/', function(req, res) {
-  res.render('student', {layout: false, name: req.session.name});
+  res.render('student', {layout: false, name: req.session.result.name});
 });
 
 

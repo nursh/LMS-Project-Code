@@ -26,7 +26,15 @@ app.use('/teacher', teacher);
 app.use('/student', student);
 
 //view engines
-app.engine('handlebars',  hbs({defaultLayout: 'main', layoutsDir: __dirname + '/views/layout'}));
+app.engine('handlebars',  hbs({defaultLayout: 'main',
+                               layoutsDir: __dirname + '/views/layout',
+                               helpers: {
+                                   section: function(name, options){
+                                       if(!this._sections) this._sections = {};
+                                       this._sections[name] = options.fn(this);
+                                       return null;
+                                   }
+                               }}));
 app.set('view engine', 'handlebars');
 
 //public files

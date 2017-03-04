@@ -34,14 +34,14 @@ router.post('/sign-in', function(req, res) {
           req.session.notreg = 'User is not registered';
           res.redirect('sign-in');
         } else {
+          req.session.success = true;
+          req.session.result = result;
+          // set it to be false or something to clear errors - req.session.errors;
           switch (result.role) {
-            case 'Teacher': req.session.success = true;
-                            req.session.name = result.name;
-                            res.redirect('teacher');
+
+            case 'Teacher': res.redirect('teacher');
                             break;
-            case 'Student': req.session.success = true;
-                            req.session.name = result.name;
-                            res.redirect('student');
+            case 'Student': res.redirect('student');
                             break;
             default: req.session.details = 'Login details are not correct';
                      res.redirect('sign-in');
@@ -73,6 +73,7 @@ router.post('/submit', function(req, res) {
         if(!exists) {
           req.session.success = true;
           register.registerUser(User);
+          // set it to be false or something to clear errors - req.session.errors;
           res.redirect('sign-in');
         } else {
           req.session.exists = 'User is already registered';

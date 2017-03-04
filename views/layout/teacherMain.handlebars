@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="/css/users.css" >
 </head>
 <body>
+
   <div class="wrapper">
     <!-- Page Header -->
     <div class="header">
@@ -18,7 +19,6 @@
       </button>
 
       <div class="btn-group pull-right">
-        <span class="username pull-left">{{name}}</span>
         <button type="button" class="btn btn-default">
           <span class="glyphicon glyphicon-cog"></span>
           Settings
@@ -28,10 +28,9 @@
           <span class="sr-only">Toggle Dropdown</span>
         </button>
         <ul class="dropdown-menu">
-          <li><a href="#">User Info</a></li>
-          <li><a href="#">Update Info</a></li>
+          <li><a href="#"><b>{{name}}</b></a></li>
           <li role="separator" class="divider"></li>
-          <li><a href="/sign-in">Logout</a></li>
+          <li class="logout"><a href="/sign-in">Logout</a></li>
         </ul>
       </div>
     </div>
@@ -39,11 +38,8 @@
     <!-- Left Navbar -->
     <div class="sidebar">
       <ul class="nav">
-        <li><a href="#"><i class="glyphicon glyphicon-film"></i><span>&emsp;Create Course</span></a></li>
-        <li><a href="#"><i class="glyphicon glyphicon-lock"></i><span>&emsp;Overview</span></a></li>
-        <li><a href="#"><i class="glyphicon glyphicon-tag"></i><span>&emsp;Home</span></a></li>
-        <li><a href="#"><i class="glyphicon glyphicon-inbox"></i><span>&emsp;Course Management</span></a></li>
-        <li><a href="#"><i class="glyphicon glyphicon-signal"></i><span>&emsp;Reference</span></a></li>
+        <li><a href="/teacher"><i class="glyphicon glyphicon-lock"></i><span>&emsp;Course Management</span></a></li>
+        <li><a href="/teacher/createCourse"><i class="glyphicon glyphicon-film"></i><span>&emsp;Create Course</span></a></li>
       </ul>
     </div>
 
@@ -57,7 +53,10 @@
 
 
   <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  {{{_sections.handlebars}}}
+  {{{_sections.script}}}
   <script src="/js/teacher.js"></script>
 </body>
 </html>
