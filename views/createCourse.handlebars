@@ -1,7 +1,7 @@
 <h1>Create Course</h1>
 
 
-<form action="/teacher/manageCourses" method="post" class="col-md-6">
+<form action="/teacher/createCourse" method="post" class="col-md-6">
 
   <div class="form-group">
     <button class="btn btn-primary tip">Show Example</button>
@@ -9,8 +9,13 @@
 
   <div class="form-group well hidden">
     <b>Course Name:</b> Introduction to Business<br>
-    <b>Course Code:</b> BUSI 101
+    <b>Course Code:</b> BUSI 101<br/>
+    Press the Generate button to create a random course number
   </div>
+
+  {{# if course}}
+    <p class="alert alert-danger"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>  {{details}} </p>
+  {{/if}}
 
   <div class="form-group">
     <label for="name">Course Name</label>
@@ -18,8 +23,14 @@
   </div>
 
   <div class="form-group">
-    <label for="email">Course Code</label>
-    <input type="text" class="form-control" name="course-code" placeholder="Course Code" required>
+    <label for="course-code">Course Code</label>
+    <input type="text" class="form-control" name="code" placeholder="Course Code" required>
+  </div>
+
+  <div class="form-group">
+    <label for="number">Course Number: </label>
+    <input type="text" name="number" placeholder="Course Code" id="number" required>
+    <button id="generator" class="btn btn-primary">Generate</button>
   </div>
 
   <div class="form-group text-center">
@@ -34,6 +45,11 @@
       $('.tip').click(function(e) {
         e.preventDefault();
         $('.well').toggleClass('hidden');
+      })
+
+      $('#generator').click(function(e) {
+        e.preventDefault();
+        $('#number').val(chance.integer({min: 10000, max: 99999}));
       })
   </script>
 {{/section}}

@@ -36,7 +36,6 @@ router.post('/sign-in', function(req, res) {
         } else {
           req.session.success = true;
           req.session.result = result;
-          // set it to be false or something to clear errors - req.session.errors;
           switch (result.role) {
 
             case 'Teacher': res.redirect('teacher');
