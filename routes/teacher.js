@@ -1,8 +1,10 @@
 let express = require('express'),
-    register = require('../models/courseRegistrationHelper.js');
+    register = require('../models/courseRegistrationHelper.js'),
+    courses = require('../models/courseManagementHelper.js'),
     router = express.Router();
 
 router.get('/', function(req, res) {
+  courses.getCourses(req.session.result.id);
   res.render('manageCourses', {layout: 'teacherMain', name: req.session.result.name});
 });
 
