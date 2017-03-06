@@ -9,10 +9,15 @@ router.get('/', function(req, res) {
 
 router.get('/sign-in', function(req, res) {
   res.render('sign-in', {layout: false, success: req.session.success, errors: req.session.errors, notreg: req.session.notreg, details: req.session.details});
+  req.session.details = null;
+  req.session.notreg = null;
+  req.session.errors = null;
 });
 
 router.get('/register', function(req, res) {
   res.render('register', {layout: false,  success: req.session.success, errors: req.session.errors, exists: req.session.exists});
+  req.session.errors = null;
+  req.session.exists = null;
 });
 
 
@@ -37,7 +42,6 @@ router.post('/sign-in', function(req, res) {
           req.session.success = true;
           req.session.result = result;
           switch (result.role) {
-
             case 'Teacher': res.redirect('teacher');
                             break;
             case 'Student': res.redirect('student');
@@ -72,7 +76,6 @@ router.post('/submit', function(req, res) {
         if(!exists) {
           req.session.success = true;
           register.registerUser(User);
-          // set it to be false or something to clear errors - req.session.errors;
           res.redirect('sign-in');
         } else {
           req.session.exists = 'User is already registered';

@@ -1,8 +1,10 @@
 <h1>Create Course</h1>
 
+{{#if course }}
+  <p class="alert alert-danger"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>  {{ course }} </p>
+{{/if}}
 
 <form action="/teacher/createCourse" method="post" class="col-md-6">
-
   <div class="form-group">
     <button class="btn btn-primary tip">Show Example</button>
   </div>
@@ -10,12 +12,8 @@
   <div class="form-group well hidden">
     <b>Course Name:</b> Introduction to Business<br>
     <b>Course Code:</b> BUSI 101<br/>
-    Press the Generate button to create a random course number
+    Then Press the Generate button to create a random course number
   </div>
-
-  {{# if course}}
-    <p class="alert alert-danger"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>  {{details}} </p>
-  {{/if}}
 
   <div class="form-group">
     <label for="name">Course Name</label>
@@ -37,8 +35,6 @@
     <button class="btn btn-primary" id="submit">Submit</button>
   </div>
 </form>
-
-
 
 {{#section 'script'}}
   <script type="application/javascript">

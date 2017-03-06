@@ -38,14 +38,14 @@
     <!-- Left Navbar -->
     <div class="sidebar">
       <ul class="nav">
-        <li><a href="/teacher"><i class="glyphicon glyphicon-lock"></i><span>&emsp;Manage Courses</span></a></li>
-        <li><a href="/teacher/createCourse"><i class="glyphicon glyphicon-film"></i><span>&emsp;Create Course</span></a></li>
+        <li><a href="/student"><i class="glyphicon glyphicon-lock"></i><span>&emsp;View Courses</span></a></li>
+        <li><a href="/student/addCourse"><i class="glyphicon glyphicon-film"></i><span>&emsp;Add Course</span></a></li>
       </ul>
     </div>
 
     <div class="content">
       <div class="container-fluid">
-        {{{ body }}}
+          {{{ body }}}
       </div>
     </div>
 
@@ -55,9 +55,6 @@
   <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="/js/chance.js"></script>
-  {{{_sections.handle}}}
-  {{{_sections.script}}}
   <script src="/js/teacher.js"></script>
 </body>
 </html>

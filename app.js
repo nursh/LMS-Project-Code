@@ -14,13 +14,6 @@ let express = require('express'),
 //public files
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(express.static(path.join(__dirname, '/views')));
-app.all('*', function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  next();
-});
-
 
 //body-parser middleware
 app.use(bodyParser.json());
@@ -36,13 +29,11 @@ let options = {
     database : 'LMS'
 };
 let sessionStore = new MySQLStore(options);
-app.use(session({ store: sessionStore,
- secret: "test",
- saveUninitialized: false,
- resave: false,
- cookie: { secure: false,
-    httpOnly: false
- }
+app.use(session({
+   store: sessionStore,
+   secret: "test",
+   saveUninitialized: true,
+   resave: false,
  })
 );
 

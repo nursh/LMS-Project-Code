@@ -5,11 +5,12 @@ let express = require('express'),
 
 router.get('/', function(req, res) {
   courses.getCourses(req.session.result.id);
-  res.render('manageCourses', {layout: 'teacherMain', name: req.session.result.name});
+  res.render('manageCourses', {layout: 'teacherMain', name: req.session.result.name });
 });
 
 router.get('/createCourse', function(req, res) {
-  res.render('createCourse', {layout: 'teacherMain', name: req.session.result.name, course: req.session.courseExits});
+  res.render('createCourse', {layout: 'teacherMain', name: req.session.result.name, course: req.session.courseExists});
+  req.session.courseExists = null;
 });
 
 router.post('/createCourse', function(req, res) {
@@ -23,15 +24,12 @@ router.post('/createCourse', function(req, res) {
   register.courseExists(course, function(result) {
     if(!result){
       register.registerCourse(course);
-      req.session.success = true;
       res.redirect('/teacher/createCourse');
     } else {
       req.session.courseExists = result;
       res.redirect('/teacher/createCourse');
     }
-  })
-
-
+  });
 })
 
 
