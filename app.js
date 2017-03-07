@@ -41,9 +41,11 @@ app.use(session({
 let routes = require('./routes/index');
 let teacher = require('./routes/teacher');
 let student = require('./routes/student');
+let course = require('./routes/course');
 app.use('/', routes);
 app.use('/teacher', teacher);
 app.use('/student', student);
+app.use('/course', course);
 
 //view engines
 app.engine('handlebars',  hbs({defaultLayout: 'main',

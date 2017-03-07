@@ -13,7 +13,7 @@ $.ajax({
           let panel = '<div class="panel panel-default">'
           panel +=  '<div class="panel-heading">' + element.code + '<span class="pull-right">' + element.number + '</span></div>'
           panel +=  '<div class="panel-body">'
-          panel +=  '<a href="#">' + element.name + '</a>'
+          panel +=  '<a href="/course/' + element.number + '">' + element.name + '</a>'
           panel +=  '</div>'
           panel +=  '</div>'
           $('.courses').append(panel);
