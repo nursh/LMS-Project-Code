@@ -1,1 +1,34 @@
 <h1>Add Course</h1>
+
+<div class="col-md-6">
+  <form action="/student/addCourse" method="post">
+    {{#if course}}
+      <p class="alert alert-danger"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>  {{ course }} </p>
+    {{/if}}
+
+    <div class="form-group">
+      <label for="search">Search by: &nbsp;</label>
+      <select name="search" id="search">
+        <option value="code">Course Code</option>
+        <option value="number">Course Number</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <input type="text" name="searchinput" id="searchinput" placeholder="Enter code or number">
+      <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+  </form>
+
+  <div class="row">
+      <div class="courses"></div>
+  </div>
+
+</div>
+
+
+
+
+{{#section 'courses'}}
+  <script src="/js/searchcourse.js"></script>
+{{/section}}
