@@ -1,10 +1,15 @@
 <h1>Create Course</h1>
 
-{{#if course }}
-  <p class="alert alert-danger"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>  {{ course }} </p>
-{{/if}}
 
 <form action="/teacher/createCourse" method="post" class="col-md-6">
+
+  {{#if created}}
+    <p class="alert alert-success"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>  {{ created }} </p>
+  {{/if}}
+  {{#if course }}
+    <p class="alert alert-danger"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>  {{ course }} </p>
+  {{/if}}
+  
   <div class="form-group">
     <button class="btn btn-primary tip">Show Example</button>
   </div>

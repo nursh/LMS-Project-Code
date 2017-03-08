@@ -9,8 +9,9 @@ router.get('/', function(req, res) {
 });
 
 router.get('/createCourse', function(req, res) {
-  res.render('createCourse', {layout: 'teacherMain', name: req.session.result.name, course: req.session.courseExists});
+  res.render('createCourse', {layout: 'teacherMain', name: req.session.result.name, course: req.session.courseExists, created: req.session.created});
   req.session.courseExists = null;
+  req.session.created = null;
 });
 
 router.post('/createCourse', function(req, res) {
@@ -23,6 +24,7 @@ router.post('/createCourse', function(req, res) {
 
   register.courseExists(course, function(result) {
     if(!result){
+      req.session.created = 'You have successfully created a course';
       register.registerCourse(course);
       res.redirect('/teacher/createCourse');
     } else {

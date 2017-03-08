@@ -2,8 +2,17 @@
 
 <div class="col-md-6">
   <form action="/student/addCourse" method="post">
+
+    {{#if reg}}
+      <p class="alert alert-success"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>  {{ reg }} </p>
+    {{/if}}
+
     {{#if course}}
       <p class="alert alert-danger"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>  {{ course }} </p>
+    {{/if}}
+
+    {{#if notreg}}
+      <p class="alert alert-danger"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>  {{ notreg }} </p>
     {{/if}}
 
     <div class="form-group">
