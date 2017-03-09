@@ -62,3 +62,9 @@ app.set('view engine', 'handlebars');
 app.listen(port,function(){
     console.log('The frontend server is running at port:' + port);
 });
+
+const close = function() {
+  console.log('cleared session');
+  sessionStore.close();
+};
+process.on('exit', close );
