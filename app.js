@@ -33,7 +33,7 @@ app.use(session({
    store: sessionStore,
    secret: "test",
    saveUninitialized: true,
-   resave: false,
+   resave: false
  })
 );
 

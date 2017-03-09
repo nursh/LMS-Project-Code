@@ -19,12 +19,13 @@ const getCourses = function(user_id, callback) {
          console.error('error connecting: ' + error.stack);
          return;
         }
-        if(results.length === 0) {
-          return callback('You are not currently registered in any course(s).')
-        }
         fs.writeFile('public/json/viewcourses.json', JSON.stringify(results), function (err) {
           if (err) throw err;
         });
+        if(results.length === 0) {
+          return callback('You are not registered in any course(s).')
+        }
+        return callback(false);
       });
     connection.release();
     })

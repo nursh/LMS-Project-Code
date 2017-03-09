@@ -1,5 +1,6 @@
 let express = require('express'),
     register = require('../models/RegisterHelper'),
+    chance = require('chance').Chance(),
     signin = require('../models/SigninHelper');
     router = express.Router();
 
@@ -15,7 +16,8 @@ router.get('/sign-in', function(req, res) {
 });
 
 router.get('/register', function(req, res) {
-  res.render('register', {layout: false,  success: req.session.success, errors: req.session.errors, exists: req.session.exists});
+  res.render('register', {layout: false,  success: req.session.success, errors: req.session.errors, exists: req.session.exists, newguy: req.session.newguy});
+  req.session.newguy = null;
   req.session.errors = null;
   req.session.exists = null;
 });
@@ -67,6 +69,7 @@ router.post('/submit', function(req, res) {
       res.redirect('register');
     } else {
       let User = {
+        id: chance.integer({min: 100000, max: 999990}),
         name: req.body.name,
         email: req.body.email,
         password: req.body.password,
@@ -75,8 +78,9 @@ router.post('/submit', function(req, res) {
       register.userExists(User, function(exists){
         if(!exists) {
           req.session.success = true;
+          req.session.newguy = 'User has successfully registered'
           register.registerUser(User);
-          res.redirect('sign-in');
+          res.redirect('register');
         } else {
           req.session.exists = 'User is already registered';
           res.redirect('register');

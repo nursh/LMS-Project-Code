@@ -1,0 +1,6 @@
+* Connect database tables with relationships -semi-done???
+* Write authentication for Student search courses
+* Write authentication for Teacher adding courses
+
+* maybe update profile link
+* Readonly input field for number generation(so user does not input wrong values)

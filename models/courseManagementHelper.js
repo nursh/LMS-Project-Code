@@ -22,6 +22,10 @@ const getCourses = function(user_id, callback) {
         fs.writeFile('public/json/courses.json', JSON.stringify(results), function (err) {
           if (err) throw err;
         });
+        if(results.length === 0) {
+          return callback('You have not created any course(s).')
+        }
+        return callback(false);
       });
     connection.release();
     })

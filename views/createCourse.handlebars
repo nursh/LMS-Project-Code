@@ -9,7 +9,7 @@
   {{#if course }}
     <p class="alert alert-danger"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>  {{ course }} </p>
   {{/if}}
-  
+
   <div class="form-group">
     <button class="btn btn-primary tip">Show Example</button>
   </div>
@@ -30,12 +30,6 @@
     <input type="text" class="form-control" name="code" placeholder="Course Code" required>
   </div>
 
-  <div class="form-group">
-    <label for="number">Course Number: </label>
-    <input type="text" name="number" placeholder="Course Code" id="number" required>
-    <button id="generator" class="btn btn-primary">Generate</button>
-  </div>
-
   <div class="form-group text-center">
     <button class="btn btn-primary" id="submit">Submit</button>
   </div>
@@ -46,11 +40,6 @@
       $('.tip').click(function(e) {
         e.preventDefault();
         $('.well').toggleClass('hidden');
-      })
-
-      $('#generator').click(function(e) {
-        e.preventDefault();
-        $('#number').val(chance.integer({min: 10000, max: 99999}));
       })
   </script>
 {{/section}}

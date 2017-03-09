@@ -1,7 +1,11 @@
 <div class="row">
   <div class="col-md-7">
     <h1>Manage Courses</h1>
-    <div class="courses"></div>
+    {{#if cre }}
+      <p class="alert alert-info"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>  {{ cre }} </p>
+    {{/if}}
+    <div class="courses">
+    </div>
   </div>
 </div>
 

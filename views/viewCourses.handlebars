@@ -1,6 +1,10 @@
 <h1>Courses</h1>
 <div class="row">
-  <div class="courses col-md-6"></div>
+  <div class="courses col-md-6">
+    {{#if regis }}
+      <p class="alert alert-info"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>  {{ regis }} </p>
+    {{/if}}
+  </div>
 </div>
 
 

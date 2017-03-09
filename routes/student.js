@@ -7,8 +7,15 @@ let express = require('express'),
 
 
 router.get('/', function(req, res) {
-  viewCourses.getCourses(req.session.result.id);
-  res.render('viewCourses', {layout: 'StudentMain.handlebars', name: req.session.result.name});
+  viewCourses.getCourses(req.session.result.id, function(result){
+    if(result){
+      req.session.regis = result;
+      res.render('viewCourses', {layout: 'StudentMain.handlebars', name: req.session.result.name, regis: req.session.regis});
+    } else {
+      res.render('viewCourses', {layout: 'StudentMain.handlebars', name: req.session.result.name, regis: req.session.regis});
+    }
+  });
+  req.session.regis = null
   clearFile();
 });
 
