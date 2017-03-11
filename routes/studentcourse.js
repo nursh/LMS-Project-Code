@@ -5,8 +5,8 @@ let express = require('express'),
 router.get('/courses/:coursenumber', function(req, res) {
   course.getCourseByNumber(req.params.coursenumber, function(result){
     req.session.cnum = result;
+    res.render('studentCourse', {layout: 'studentCourseView', name: req.session.result.name, cname: req.session.cnum.name});
   });
-  res.render('studentCourse', {layout: 'studentCourseView', name: req.session.result.name, cname: req.session.cnum.name});
 });
 
 router.get('/', function(req, res) {

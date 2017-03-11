@@ -1,8 +1,6 @@
-* Write authentication for Student search courses
-* Write authentication for Teacher adding courses
-
-
-* Make course interface for students
-* Make course interface for teachers
+* Add template(editor of questions)
+* Add is test visible to students or not
+* Question in database
+* Render test in view
 
 * maybe update profile link

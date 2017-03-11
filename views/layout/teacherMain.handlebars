@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Lato:700" rel="stylesheet">
   <link rel="stylesheet" href="/css/users.css" >
+  {{{_sections.maker}}}
 </head>
 <body>
 
@@ -37,9 +38,9 @@
 
     <!-- Left Navbar -->
     <div class="sidebar">
-      <ul class="nav">
-        <li><a href="/teacher"><i class="glyphicon glyphicon-lock"></i><span>&emsp;Manage Courses</span></a></li>
-        <li><a href="/teacher/createCourse"><i class="glyphicon glyphicon-film"></i><span>&emsp;Create Course</span></a></li>
+      <ul class="nav navig">
+        <li role="presentation" class="act"><a href="/teacher"><i class="glyphicon glyphicon-edit"></i><span>&emsp;Manage Courses</span></a></li>
+        <li role="presentation"><a href="/teacher/createCourse"><i class="glyphicon glyphicon-th-list"></i><span>&emsp;Create Course</span></a></li>
       </ul>
     </div>
 
@@ -52,11 +53,11 @@
   </div>
 
 
-  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="/js/teacher.js"></script>
   {{{_sections.handle}}}
   {{{_sections.script}}}
-  <script src="/js/teacher.js"></script>
+
 </body>
 </html>

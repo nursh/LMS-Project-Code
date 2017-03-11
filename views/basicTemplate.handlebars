@@ -1,0 +1,162 @@
+<div class="container">
+
+
+    <!-- Page Title -->
+    <div class="row">
+      <div id="questions" class="col-md-8">
+        <h1>Basic Template</h1>
+      </div>
+    </div>
+
+    <!-- Types of Questions -->
+    <div class="row col-md-8" id="question-format">
+      <ul class="nav nav-pills qtype">
+        <li role="presentation" class="active" id="multichoice"><a href="#">Multiple choice</a></li>
+        <li role="presentation" id="allapply"><a href="#">Select all that apply</a></li>
+        <li role="presentation" id="truefalse"><a href="#">True or False</a></li>
+        <li role="presentation" id="fillblanks"><a href="#">Fill in the blanks</a></li>
+        <li role="presentation" id="defopen"><a href="#">Long answer</a></li>
+      </ul>
+    </div>
+
+
+    <!-- Tips for question format -->
+    <div class="row">
+      <div class="col-md-8">
+        <button class="btn btn-primary" id="tips" type="button" data-toggle="collapse" data-target="#question-tips" aria-expanded="false" aria-controls="question-tips">
+          Tips
+        </button>
+        <div class="collapse" id="question-tips">
+          <div class="well" id="multichoice-tips">
+            <p>Multiple choice questions consists of a question and multiple options to choose from.</p>
+          </div>
+
+          <div class="well" id="allapply-tips" style="display: none;">
+            <p>Select all that apply questions consists of a question and selecting multiple answers that are correct.</p>
+          </div>
+
+          <div class="well" id="true-or-false-tips" style="display: none;">
+            <p>True or False requires answering a question by choosing between true or false.</p>
+          </div>
+
+          <div class="well"  id="fill-blanks-tips" style="display: none;">
+              <p>Fill in the blanks questions require filling given blank spaces with the most appropriate answer.</p>
+          </div>
+
+          <div class="well"  id="def-open-tips" style="display: none;">
+              <p>Long answer Questions require answering the question the best possible way.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <form class="col-md-8">
+        <!-- Enter Question textarea -->
+        <div class="form-group">
+          <label for="  ">Enter question</label><br>
+          <textarea name="name" rows="4" cols="25" class="form-control"></textarea>
+        </div>
+
+        <div class="form-group" id="points">
+          <!-- Select number of option boxes -->
+          <label for="" class="options-select">Select number of options:</label>
+          <select id="choices_num" name="" class="options-select">
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5" selected>5</option>
+          </select>
+
+          <!-- Points box  -->
+          <div class="input-group col-md-3 pull-right">
+            <input type="number" class="form-control" placeholder="Point(s)" min="0">
+            <span class="input-group-addon">Point(s)</span>
+          </div>
+        </div>
+
+        <div class="form-group" id="format">
+
+          <!-- Options for the multiple choice question format -->
+          <div  id="options">
+            <div class="input-group choices">
+              <span class="input-group-addon"> <input type="radio" name="choices"> </span>
+              <input type="text" class="form-control" placeholder="Option">
+            </div>
+            <div class="input-group choices">
+              <span class="input-group-addon"> <input type="radio" name="choices"> </span>
+              <input type="text" class="form-control" placeholder="Option">
+            </div>
+            <div class="input-group choices">
+              <span class="input-group-addon"> <input type="radio" name="choices"> </span>
+              <input type="text" class="form-control" placeholder="Option">
+            </div>
+            <div class="input-group choices">
+              <span class="input-group-addon"> <input type="radio" name="choices"> </span>
+              <input type="text" class="form-control" placeholder="Option">
+            </div>
+            <div class="input-group choices">
+              <span class="input-group-addon"> <input type="radio" name="choices"> </span>
+              <input type="text" class="form-control" placeholder="Option">
+            </div>
+          </div>
+
+          <!-- Options for select all that apply questions -->
+          <div id="ala" style="display: none;">
+            <div class="input-group">
+              <span class="input-group-addon"> <input type="checkbox"></span>
+              <input type="text" class="form-control" placeholder="Option">
+            </div>
+            <button type="button" class="btn btn-default pull-left" id="option-adder">
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add option
+            </button>
+            <button type="button" class="btn btn-default pull-left" id="option-remover">
+              <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Remove option
+            </button>
+          </div>
+
+          <!-- True or False questions -->
+          <div id="tof" style="display: none;">
+              <select class="form-control" name="">
+                <option value="True">True</option>
+                <option value="False">False</option>
+              </select>
+          </div>
+
+          <!-- Short answer questions -->
+          <div id="fitb" style="display: none;">
+            <input type="text" class="form-control" placeholder="Answer">
+            <button type="button" class="btn btn-default pull-left" id="answer-adder">
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add answer
+            </button>
+            <button type="button" class="btn btn-default pull-left" id="answer-remover">
+              <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Remove answer
+            </button>
+          </div>
+        </div>
+
+        <!-- Feedback box  -->
+        <div class="form-group">
+          <input type="text" name="feedback" class="form-control" placeholder="Feedback">
+        </div>
+
+        <!-- Submit Question box -->
+        <div class="form-group">
+          <button type="button" class="btn btn-success pull-right" name="button">Submit question</button>
+        </div>
+
+        <div class="form-group" id="test-preview">
+          <button type="button" class="btn btn-primary pull-left" name="button">Test Preview</button>
+        </div>
+
+      </form>
+    </div>
+
+</div>
+
+{{#section 'maker'}}
+  <link rel="stylesheet" href="/css/editor.css">
+{{/section}}
+
+{{#section 'script'}}
+  <script src="/js/editor.js"></script>
+{{/section}}

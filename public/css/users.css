@@ -17,16 +17,16 @@ body, html, .wrapper{
   font-family: 'Lato', sans-serif;
 }
 
-.nav {
+.navig {
   padding-top: 15px;
 }
 
-.nav a {
+.navig a {
   color: white;
 }
 
-.nav li > a:hover,
-.active {
+.navig li > a:hover,
+.act{
   color: white;
   background-color: #d09547;
 }

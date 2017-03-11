@@ -1,0 +1,25 @@
+
+
+<form class="col-md-6" action="/teachercourse/createTest" method="post">
+  <h3>Create New Test</h3>
+
+  {{#if tsucc}}
+    <p class="alert alert-success"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>  {{ tsucc }} </p>
+  {{/if}}
+
+  {{#if tfail}}
+    <p class="alert alert-danger"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>  {{ tfail }} </p>
+  {{/if}}
+
+  <div class="form-group">
+    <label for="testname">Title </label><br/>
+    <input type="text" class="form-control" name="testname" id="testname" required>
+  </div>
+
+  <div class="form-group">
+    <label for="testduration">Duration </label><br/>
+    <input type="number" name="testduration" value="testduration" min="0"> minutes
+  </div>
+
+  <button class="btn btn-primary" name="button">Submit</button>
+</form>

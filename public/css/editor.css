@@ -1,0 +1,24 @@
+#question-format{
+  margin-bottom: 30px;
+}
+
+#tips{
+  margin-bottom: 10px;
+}
+
+#ala div{
+  clear: both;
+}
+
+#format{
+  margin-top:6%;
+}
+
+
+.choices:last-of-type{
+  margin-bottom: 10px;
+}
+
+.qtype a {
+  color: black;
+}
