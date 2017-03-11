@@ -25,9 +25,10 @@ body, html, .wrapper{
   color: white;
 }
 
-.nav li > a:hover {
-  color: black;
-  background-color: white;
+.nav li > a:hover,
+.active {
+  color: white;
+  background-color: #d09547;
 }
 
 .dropdown-menu .logout a:hover {
