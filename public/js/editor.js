@@ -10,58 +10,38 @@ $(function(){
           case "Multiple choice":
           // Answer Controls
             $('#options').show();
-            $('#ala').hide();
             $('#tof').hide();
             $('#fitb').hide();
             $('.options-select').show();
           // Tips
             $('#multichoice-tips').show();
-            $('#allapply-tips').hide();
             $('#true-or-false-tips').hide();
             $('#fill-blanks-tips').hide();
-            $('#def-open-tips').hide();
-            break;
-          case "Select all that apply":
-          // Answer Controls
-            $('#options').hide();
-            $('#ala').show();
-            $('#tof').hide();
-            $('#fitb').hide();
-            $('.options-select').hide();
-          // Tips
-            $('#multichoice-tips').hide();
-            $('#allapply-tips').show();
-            $('#true-or-false-tips').hide();
-            $('#fill-blanks-tips').hide();
-            $('#def-open-tips').hide();
+            $('.qtype').val('Multichoice');
             break;
           case "True or False":
           // Answer Controls
             $('#options').hide();
-            $('#ala').hide();
             $('#tof').show();
             $('#fitb').hide();
             $('.options-select').hide();
           // Tips
             $('#multichoice-tips').hide();
-            $('#allapply-tips').hide();
             $('#true-or-false-tips').show();
             $('#fill-blanks-tips').hide();
-            $('#def-open-tips').hide();
+            $('.qtype').val('TrueFalse');
             break;
-          case "Fill in the blanks":
+          case "Fill in the blank space":
           // Answer Controls
             $('#options').hide();
-            $('#ala').hide();
             $('#tof').hide();
             $('#fitb').show();
             $('.options-select').hide();
           // Tips
             $('#multichoice-tips').hide();
-            $('#allapply-tips').hide();
             $('#true-or-false-tips').hide();
             $('#fill-blanks-tips').show();
-            $('#def-open-tips').hide();
+            $('.qtype').val('Blanks');
             break;
           default:
 
@@ -82,42 +62,30 @@ $(function(){
   })
 })
 
-//Create extra option spaces for select-all-that-apply Questions
 $(function(){
-  let options = '<div class="input-group">';
-  options +=  '<span class="input-group-addon"> <input type="checkbox"></span>';
-  options +=  '<input type="text" class="form-control" placeholder="Option">';
-  options +=  '</div>';
-  $('#option-adder').click(function(){
-    $(this).before(options);
-  })
+  $('input[name=choices]').on('change', function(){
+    $('input[name=choices]:checked').val($(this).parent().next().val());
+  });
 })
 
-//Remove last option that was added
-$(function(){
-  $('#option-remover').click(function(){
-    if($(this).parent().children('div').length >= 2){
-       $(this).parent().children('div:last').remove();
-    }
-  })
-})
 
-//Create extra answer spaces for fill-in-the blanks Questions
-$(function() {
-  let answerSpace = '<input type="text" class="form-control" placeholder="Answer">';
-  $('#answer-adder').click(function(){
-    $(this).before(answerSpace);
-  })
-})
-
-//Remove last answer that was added
 $(function(){
-  $('#answer-remover').click(function(){
-    if($(this).parent().children('input').length >= 2){
-      $(this).parent().children('input:last').remove();
-    }
+  $('form').submit(function(e){
+    let form = this;
+    e.preventDefault();
+    //Set the value of selected multiple choice
+    let options = [];
+    $(".opmc").each(function() {
+        options.push($(this).val());
+    });
+    $('#allmc').val(options.join(' '));
+    setTimeout(function(){form.submit()}, 10);
   })
-})
+
+});
+
+
+
 
 //Make nav stacked after 650px width of screen
 $(function(){
