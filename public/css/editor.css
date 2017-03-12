@@ -22,3 +22,7 @@
 .qtype a {
   color: black;
 }
+
+.pointer {
+  clear: left;
+}

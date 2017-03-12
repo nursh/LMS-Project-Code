@@ -3,14 +3,14 @@ const db = require('../dbconfig'),
 
 
 
-const getTests = function(number, callback) {
+const getAnnouncements = function(number, callback) {
     db(function(err, connection) {
       if(err) {
         console.log('error connecting: ' + err.stack);
         return;
       }
     connection.query({
-      sql: 'SELECT * FROM `Tests` WHERE `course_number` = ?',
+      sql: 'SELECT * FROM `Announcements` WHERE `cnumber` = ? ORDER BY date DESC',
       timeout: 40000
       },
       [number],
@@ -19,11 +19,11 @@ const getTests = function(number, callback) {
          console.error('error connecting: ' + error.stack);
          return;
         }
-        fs.writeFile('public/json/coursetests.json', JSON.stringify(results), function (err) {
+        fs.writeFile('public/json/courseannouncements.json', JSON.stringify(results), function (err) {
           if (err) throw err;
         });
         if(results.length === 0) {
-          return callback('There are no tests in this course yet');
+          return callback('There are no announcements at the moment')
         }
         return callback(false);
       });
@@ -33,5 +33,5 @@ const getTests = function(number, callback) {
 
 
 module.exports = {
-  getTests
+  getAnnouncements
 }

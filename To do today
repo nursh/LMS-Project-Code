@@ -1,6 +1,17 @@
-* Add template(editor of questions)
 * Add is test visible to students or not
 * Question in database
 * Render test in view
 
+* remove select all that apply
+* make rows for five options
+
+* show number of students and tests in class - teacher view
+
+
 * maybe update profile link
+
+
+on submit
+prevent default
+set all inputs into hidden input
+store input into database

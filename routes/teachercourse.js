@@ -2,18 +2,26 @@ let express = require('express'),
     chance = require('chance').Chance(),
     testReg = require('../models/createTestHelper');
     courseTests = require('../models/getCourseTestsHelper');
+    announcement = require('../models/makeAnnouncementHelper');
+    getAnn = require('../models/getCourseAnnouncementsHelper');
     course = require('../models/soloCourse'),
     router = express.Router();
 
 router.get('/course/:coursenumber', function(req, res) {
   course.getCourseByNumber(req.params.coursenumber, function(result){
     req.session.tnum = result;
-    res.render('teacherCourse', {layout: 'teacherCourseView', name: req.session.result.name, tname: req.session.tnum.name});
+    res.redirect('/teachercourse/');
   });
 });
 
 router.get('/', function(req, res) {
-  res.render('teacherCourse', {layout: 'teacherCourseView', name: req.session.result.name, tname: req.session.tnum.name});
+  getAnn.getAnnouncements(req.session.tnum.number, function(result){
+      if(result){
+        req.session.anns = result;
+      }
+      res.render('teacherCourse', {layout: 'teacherCourseView', name: req.session.result.name, tname: req.session.tnum.name, anns: req.session.anns});
+  })
+  req.session.anns = null;
 });
 
 router.get('/createTest', function(req, res) {
@@ -59,6 +67,28 @@ router.get('/testTemplates', function(req, res) {
 
 router.get('/basicTemplate', function(req, res) {
     res.render('basicTemplate', {layout: 'teacherCourseView', name: req.session.result.name, tname: req.session.tnum.name});
+})
+
+router.get('/makeAnnouncements', function(req, res) {
+    res.render('courseAnnouncements', {layout: 'teacherCourseView', name: req.session.result.name, tname: req.session.tnum.name, msg: req.session.ann, msgfail: req.session.annfail});
+    req.session.annfail = null;
+    req.session.ann = null;
+})
+
+router.post('/makeAnnouncements', function(req, res) {
+    let message = {
+      message: req.body.message,
+      cnumber: req.session.tnum.number
+    };
+    announcement.messageExists(message, function(result){
+      if(!result) {
+        req.session.ann = 'You have successfully created an announcement';
+        announcement.registerMessage(message);
+      } else {
+        req.session.annfail = result;
+      }
+      res.redirect('/teachercourse/makeAnnouncements');
+    });
 })
 
 router.get('/grades', function(req, res) {

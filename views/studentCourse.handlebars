@@ -1,2 +1,12 @@
-<h1>{{cname}}</h1>
-<h2>Announcements go here if any</h2>
+<h2>{{cname}} &mdash; Announcements</h2>
+<div class="col-md-7">
+  <div class="announcements">
+    {{#if stanns }}
+      <p class="alert alert-info"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>  {{ stanns }} </p>
+    {{/if}}
+  </div>
+</div>
+
+{{#section 'script'}}
+  <script src="/js/studentannoun.js"></script>
+{{/section}}

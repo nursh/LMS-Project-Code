@@ -63,20 +63,6 @@ $(function(){
             $('#fill-blanks-tips').show();
             $('#def-open-tips').hide();
             break;
-          case "Long answer":
-          // Answer Controls
-            $('#options').hide();
-            $('#ala').hide();
-            $('#tof').hide();
-            $('#fitb').hide();
-            $('.options-select').hide();
-          // Tips
-            $('#multichoice-tips').hide();
-            $('#allapply-tips').hide();
-            $('#true-or-false-tips').hide();
-            $('#fill-blanks-tips').hide();
-            $('#def-open-tips').show();
-            break;
           default:
 
         }

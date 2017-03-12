@@ -1,1 +1,12 @@
+<h2>{{tname}} &mdash; Announcements</h2>
+<div class="col-md-7">
+  <div class="announcements">
+    {{#if anns }}
+      <p class="alert alert-info"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>  {{ anns }} </p>
+    {{/if}}
+  </div>
+</div>
 
+{{#section 'script'}}
+  <script src="/js/announcements.js"></script>
+{{/section}}
