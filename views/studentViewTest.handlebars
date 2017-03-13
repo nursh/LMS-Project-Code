@@ -1,5 +1,6 @@
-<div class="col-md-6">
-  <h1>{{testile}}</h1>
+<div class="col-md-9">
+  <h2>{{testile}}<span class="pull-right">Duration: <span class="main">{{dur}}</span>minutes</span></h2>
+  <h4 class="text-muted">Time Left: <span id="time"><span></h4>
 </div>
 
 <div class="col-md-8">
@@ -8,11 +9,15 @@
 
     </div>
     <div class="">
-      <button class="btn btn-primary" name="button">Submit</button>
+      <button class="btn btn-primary btn-lg pull-right" name="button">Submit</button>
     </div>
   </form>
 </div>
 
 {{#section 'script'}}
   <script src="/js/testQuestions.js"></script>
+{{/section}}
+
+{{#section 'timer'}}
+  <script src="/js/timer.js"></script>
 {{/section}}

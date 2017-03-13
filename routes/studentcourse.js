@@ -51,7 +51,7 @@ router.get('/viewTest', function(req, res) {
   questions.getQuestions(ques, function(result){
     getSingleTest.getSingleTest(ques, function(result) {
       req.session.ttest = result;
-      res.render('studentViewTest', {layout: 'studentCourseView', name: req.session.result.name, cname: req.session.cnum.name, testile: req.session.ttest.title})
+      res.render('studentViewTest', {layout: 'studentCourseView', name: req.session.result.name, cname: req.session.cnum.name, testile: req.session.ttest.title, dur: req.session.ttest.duration})
     })
   })
 })
