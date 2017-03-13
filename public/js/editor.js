@@ -78,7 +78,7 @@ $(function(){
     $(".opmc").each(function() {
         options.push($(this).val());
     });
-    $('#allmc').val(options.join(' '));
+    $('#allmc').val(options.join(',-'));
     setTimeout(function(){form.submit()}, 10);
   })
 

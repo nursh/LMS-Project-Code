@@ -3,12 +3,6 @@
 
 
 * show number of students and tests in class - teacher view
-
+* Fix scrolling issue[use fixed sidebar]
 
 * maybe update profile link
-
-
-on submit
-prevent default
-set all inputs into hidden input
-store input into database

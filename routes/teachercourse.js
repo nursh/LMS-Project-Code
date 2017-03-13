@@ -4,7 +4,9 @@ let express = require('express'),
     courseTests = require('../models/getCourseTestsHelper');
     announcement = require('../models/makeAnnouncementHelper');
     getAnn = require('../models/getCourseAnnouncementsHelper');
+    questions = require('../models/getTestQuestionsHelper');
     quesCreate = require('../models/createTestQuestionsHelper');
+    remAnnounce = require('../models/removeAnnouncementHelper');
     course = require('../models/soloCourse'),
     router = express.Router();
 
@@ -67,6 +69,11 @@ router.get('/test/Templates/:testid', function(req, res) {
     res.redirect('/teachercourse/testTemplates');
 })
 
+router.get('/test/preview/:testid', function(req, res) {
+  req.session.testid = req.params.testid;
+  res.redirect('/teachercourse/testPreview');
+})
+
 router.get('/testTemplates', function(req, res) {
     res.render('testTemplates', {layout: 'teacherCourseView', name: req.session.result.name, tname: req.session.tnum.name});
 })
@@ -87,7 +94,8 @@ router.post('/questions', function(req, res) {
     type: req.body.qtype,
     tid: req.session.testid,
     cid: req.session.tnum.number,
-    feedback: req.body.feedback
+    feedback: req.body.feedback,
+    points: req.body.points
   }
   switch (type) {
     case "TrueFalse":
@@ -138,6 +146,25 @@ router.post('/makeAnnouncements', function(req, res) {
 
 router.get('/grades', function(req, res) {
   res.render('teacherGradeView', {layout: 'teacherCourseView', name: req.session.result.name, tname: req.session.tnum.name});
+});
+
+router.get('/testPreview', function(req, res) {
+  let ques = {
+    cid: req.session.tnum.number,
+    tid: req.session.testid
+  }
+  questions.getQuestions(ques, function(result){
+    if(result){
+      req.session.tques = result;
+    }
+    res.render('testPreview', {layout: 'teacherCourseView', name: req.session.result.name, tname: req.session.tnum.name, tques: req.session.tques});
+  })
+  req.session.tques = null
+})
+
+router.get('/removeAnnouncement/:message', function(req, res) {
+  remAnnounce.removeAnnouncement(req.params.message);
+  res.redirect('/teachercourse/');
 });
 
 

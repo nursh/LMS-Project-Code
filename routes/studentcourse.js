@@ -1,7 +1,9 @@
 let express = require('express'),
     course = require('../models/soloCourse'),
     courseTests = require('../models/getCourseTestsHelper'),
-    getAnn = require('../models/getCourseAnnouncementsHelper');
+    questions = require('../models/getTestQuestionsHelper'),
+    getAnn = require('../models/getCourseAnnouncementsHelper'),
+    getSingleTest = require('../models/getSingleCourseTestHelper');
     router = express.Router();
 
 router.get('/courses/:coursenumber', function(req, res) {
@@ -35,5 +37,23 @@ router.get('/tests', function(req, res) {
 router.get('/grades', function(req, res) {
   res.render('studentGrades', {layout: 'studentCourseView', name: req.session.result.name, cname: req.session.cnum.name});
 });
+
+router.get('/test/:testid', function(req, res) {
+  req.session.ttid = req.params.testid;
+  res.redirect('/studentcourse/viewTest');
+})
+
+router.get('/viewTest', function(req, res) {
+  let ques = {
+    cid: req.session.cnum.number,
+    tid: req.session.ttid
+  }
+  questions.getQuestions(ques, function(result){
+    getSingleTest.getSingleTest(ques, function(result) {
+      req.session.ttest = result;
+      res.render('studentViewTest', {layout: 'studentCourseView', name: req.session.result.name, cname: req.session.cnum.name, testile: req.session.ttest.title})
+    })
+  })
+})
 
 module.exports = router;

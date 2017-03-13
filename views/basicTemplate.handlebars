@@ -1,6 +1,5 @@
-<div class="container">
 
-    <div class="">
+   <div class="">
       <a href="/teacherCourse/testTemplates" class="btn btn-primary">
         <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
         Back to Templates
@@ -35,7 +34,7 @@
 
 
     <!-- Tips for question format -->
-    <div class="row">
+    <div class="row tips">
       <div class="col-md-8">
         <button class="btn btn-primary" id="tips" type="button" data-toggle="collapse" data-target="#question-tips" aria-expanded="false" aria-controls="question-tips">
           Tips
@@ -62,7 +61,7 @@
 
         <div class="form-group">
           <label for="question">Enter question</label><br>
-          <textarea name="question" rows="4" cols="25" class="form-control"></textarea>
+          <textarea name="question" rows="2" cols="25" class="form-control"></textarea>
         </div>
 
         <div class="form-group" id="points">
@@ -76,7 +75,7 @@
 
           <!-- Points box  -->
           <div class="input-group col-md-3 pull-right pointer">
-            <input type="number" class="form-control" placeholder="Point(s)" min="0" name="points" >
+            <input type="number" class="form-control" placeholder="Point(s)" min="0" name="points" required>
             <span class="input-group-addon">Point(s)</span>
           </div>
         </div>
@@ -135,13 +134,12 @@
         </div>
 
         <div class="form-group" id="test-preview">
-          <a href="#" class="btn btn-primary pull-left" name="button">Test Preview</a>
+          <a href="/teachercourse/testPreview" class="btn btn-primary pull-left" name="button">Test Preview</a>
         </div>
 
       </form>
     </div>
 
-</div>
 
 {{#section 'maker'}}
   <link rel="stylesheet" href="/css/editor.css">

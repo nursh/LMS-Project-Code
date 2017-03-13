@@ -57,3 +57,19 @@ body, html, .wrapper{
 .jumper {
   width: 3em;
 }
+
+.questions input[type="text"] {
+  outline: 0;
+  border: 0;
+  border-bottom: 2px solid #0e0b0b;
+  white-space: nowrap;
+}
+
+.questions input:focus {
+  border-bottom: 2px solid #243f75;
+}
+
+#question-format,
+.tips {
+  margin-bottom: 10px;
+}

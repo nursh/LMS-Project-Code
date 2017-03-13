@@ -1,0 +1,26 @@
+<div class="">
+  <a href="/teachercourse/basicTemplate" class="btn btn-primary">
+    <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+    Back to Templates
+  </a>
+</div>
+
+<div class="col-md-6">
+  <h1>Test Preview</h1>
+
+  {{#if tques}}
+    <p class="alert alert-info"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>  {{ tques }} </p>
+  {{/if}}
+</div>
+
+<div class="col-md-8">
+  <form>
+    <div class="questions">
+
+    </div>
+  </form>
+</div>
+
+{{#section 'script'}}
+  <script src="/js/testQuestions.js"></script>
+{{/section}}
