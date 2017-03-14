@@ -3,7 +3,8 @@ let express = require('express'),
     courseTests = require('../models/getCourseTestsHelper'),
     questions = require('../models/getTestQuestionsHelper'),
     getAnn = require('../models/getCourseAnnouncementsHelper'),
-    getSingleTest = require('../models/getSingleCourseTestHelper');
+    ansReg = require('../models/testQuestionAnswerHelpers'),
+    getSingleTest = require('../models/getSingleCourseTestHelper'),
     router = express.Router();
 
 router.get('/courses/:coursenumber', function(req, res) {
@@ -28,10 +29,11 @@ router.get('/tests', function(req, res) {
     if(result){
       req.session.ctests = result;
     }
-    res.render('studentCourseTests', {layout: 'studentCourseView', name: req.session.result.name, cname: req.session.cnum.name, ctests: req.session.ctests});
-
+    res.render('studentCourseTests', {layout: 'studentCourseView', name: req.session.result.name, cname: req.session.cnum.name, ctests: req.session.ctests, tans: req.session.tans, afail: req.session.afail});
+    req.session.ctests = null;
+    req.session.tans = null;
+    req.session.afail = null;
   })
-  req.session.ctests = null;
 });
 
 router.get('/grades', function(req, res) {
@@ -40,7 +42,19 @@ router.get('/grades', function(req, res) {
 
 router.get('/test/:testid', function(req, res) {
   req.session.ttid = req.params.testid;
-  res.redirect('/studentcourse/viewTest');
+  let testAns = {
+    test_id: req.session.ttid,
+    course_id: req.session.cnum.number,
+    student_id: req.session.result.id
+  };
+  ansReg.answersExists(testAns, function(result) {
+    if(result) {
+      req.session.afail = result;
+      res.redirect('/studentcourse/tests');
+    } else {
+      res.redirect('/studentcourse/viewTest');
+    }
+  })
 })
 
 router.get('/viewTest', function(req, res) {
@@ -87,6 +101,24 @@ router.post('/viewTest', function(req, res) {
     answers: ans
   }
 
+  ansReg.registerAnswer(testAns);
+  req.session.tans = 'Good Luck, You just submitted answers for a test';
+  res.redirect('/studentcourse/tests');
 })
+
+router.get('/courses/grades/:testid', function(req, res) {
+  req.session.ttid = req.params.testid;
+  //res.redirect('/studentcourse/grades');
+})
+
+router.get('/grades', function(req, res) {
+  courseTests.getTests(req.session.cnum.number, function(result){
+    if(result){
+      req.session.ctests = result;
+    }
+    res.render('studentGrades', {layout: 'studentCourseView', name: req.session.result.name, cname: req.session.cnum.name, ctests: req.session.ctests});
+    req.session.ctests = null;
+  })
+});
 
 module.exports = router;
