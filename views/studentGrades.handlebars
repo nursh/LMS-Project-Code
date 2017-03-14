@@ -2,7 +2,10 @@
   <div class="tests col-md-6">
     <h2> {{cname}} &mdash; Grades</h2>
     {{#if ctests }}
-      <p class="alert alert-info"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>  {{ ctests }} </p>
+      <p class="alert alert-warning"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>  {{ ctests }} </p>
+    {{/if}}
+    {{#if ttNot }}
+      <p class="alert alert-warning"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>  {{ ttNot }} </p>
     {{/if}}
   </div>
 </div>
