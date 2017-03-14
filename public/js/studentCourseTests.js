@@ -11,7 +11,7 @@ $.ajax({
       $.each(data, function(index, element){
           let panel = '<div class="panel panel-default">'
           panel +=  '<div class="panel-body">'
-          panel +=   element.title +  '<span  class="pull-right"><a href="/studentCourse/test/' + element.id + '"> View </a></span>';
+          panel +=   element.title +  '<span  class="pull-right"><a href="/studentCourse/test/' + element.id + '">Take test</a>&emsp;<a href="/studentCourse/revTest/' + element.id + '"> Review </a></span>';
           panel +=  '</div>'
           panel +=  '</div>'
           placeHolder.append(panel);

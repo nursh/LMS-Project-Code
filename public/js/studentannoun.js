@@ -11,7 +11,7 @@ $.ajax({
       $.each(data, function(index, element){
           let panel = '<div class="panel panel-default">'
           panel +=  '<div class="panel-body">'
-          panel +=   element.message + '<span class="pull-right">' + formatDate(new Date(element.date)) + '</span>'
+          panel +=   element.message + '<span class="pull-right text-muted">Posted&mdash;' + formatDate(new Date(element.date)) + '</span>'
           panel +=  '</div>'
           panel +=  '</div>'
           placeHolder.append(panel);

@@ -1,15 +1,17 @@
 <div class="col-md-9">
-  <h2>{{testile}}<span class="pull-right">Duration: <span class="main">{{dur}}</span>minutes</span></h2>
-  <h4 class="text-muted">Time Left: <span id="time"><span></h4>
+  {{#if dur}}
+    <h2>{{testile}}<span class="pull-right">Duration: <span class="main">{{dur}}</span>minutes</span></h2>
+    <h4 class="text-muted">Time Left: <span id="time"><span></h4>
+  {{/if}}
 </div>
 
 <div class="col-md-8">
-  <form>
+  <form method="post" action"/studentcourse/viewTest">
     <div class="questions">
 
     </div>
     <div class="">
-      <button class="btn btn-primary btn-lg pull-right" name="button">Submit</button>
+      <button class="btn btn-primary btn-lg pull-right" name="button" type="submit">Submit</button>
     </div>
   </form>
 </div>

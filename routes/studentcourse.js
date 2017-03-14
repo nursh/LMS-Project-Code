@@ -56,4 +56,37 @@ router.get('/viewTest', function(req, res) {
   })
 })
 
+router.get('/revTest/:testid', function(req, res) {
+  req.session.ttid = req.params.testid;
+  res.redirect('/studentcourse/viewReviewTest');
+})
+
+router.get('/viewReviewTest', function(req, res) {
+  let ques = {
+    cid: req.session.cnum.number,
+    tid: req.session.ttid
+  }
+  questions.getQuestions(ques, function(result){
+    getSingleTest.getSingleTest(ques, function(result) {
+      req.session.ttest = result;
+      res.render('reviewTestQuestions', {layout: 'studentCourseView', name: req.session.result.name, cname: req.session.cnum.name, testile: req.session.ttest.title, dur: req.session.ttest.duration})
+    })
+  })
+})
+
+router.post('/viewTest', function(req, res) {
+  delete req.body.button;
+  let ans = ''
+  for (let key in req.body) {
+    ans += req.body[key] + '-|-'
+  }
+  let testAns = {
+    test_id: req.session.ttid,
+    course_id: req.session.cnum.number,
+    student_id: req.session.result.id,
+    answers: ans
+  }
+
+})
+
 module.exports = router;
