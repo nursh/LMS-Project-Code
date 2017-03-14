@@ -7,6 +7,8 @@ let express = require('express'),
     questions = require('../models/getTestQuestionsHelper');
     quesCreate = require('../models/createTestQuestionsHelper');
     remAnnounce = require('../models/removeAnnouncementHelper');
+    ansKey = require('../models/getAnswerKeyHelper'),
+    ansReg = require('../models/testQuestionAnswerHelpers'),
     course = require('../models/soloCourse'),
     router = express.Router();
 
@@ -145,8 +147,31 @@ router.post('/makeAnnouncements', function(req, res) {
 })
 
 router.get('/grades', function(req, res) {
-  res.render('teacherGradeView', {layout: 'teacherCourseView', name: req.session.result.name, tname: req.session.tnum.name});
+  res.render('teacherGradeView', {layout: 'teacherCourseView', name: req.session.result.name, tname: req.session.tnum.name, ttesNot: req.session.ttesNot});
+  req.session.ttesNot = null
 });
+
+router.get('/test/Grades/:testid', function(req, res) {
+  req.session.ttestid = req.params.testid;
+  res.redirect('/teachercourse/grades/test');
+})
+
+router.get('/grades/test', function(req, res) {
+  let answers = {
+    cid: req.session.tnum.number,
+    tid: req.session.ttestid,
+    sid: req.session.result.id
+  }
+  ansKey.getAnswerKeys(answers)
+    ansReg.getAllAnswers(answers, function(result){
+      if(!result) {
+        res.render('teacherGradeTest', {layout: 'teacherCourseView', name: req.session.result.name, tname: req.session.tnum.name});
+      } else {
+        req.session.ttesNot = result;
+        res.redirect('/teachercourse/grades');
+      }
+    })
+})
 
 router.get('/testPreview', function(req, res) {
   let ques = {

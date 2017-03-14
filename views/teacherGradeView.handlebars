@@ -1,1 +1,16 @@
+<div class="row">
+  <div class="tests col-md-6">
+    <h2> {{tname}} &mdash; Grades</h2>
+    {{#if ctests }}
+      <p class="alert alert-info"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>  {{ ctests }} </p>
+    {{/if}}
+    {{#if ttesNot }}
+      <p class="alert alert-warning"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>  {{ ttesNot }} </p>
+    {{/if}}
+  </div>
+</div>
 
+
+{{#section 'script'}}
+  <script src="/js/teacherGradeTests.js"></script>
+{{/section}}

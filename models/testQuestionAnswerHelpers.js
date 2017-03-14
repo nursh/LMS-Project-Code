@@ -56,6 +56,36 @@ const getAnswers = function(answer, callback){
     })
 }
 
+
+const getAllAnswers = function(answer, callback){
+  db(function(err, connection) {
+      if(err) {
+        console.log('error connecting: ' + err.stack);
+        return;
+      }
+  connection.query({
+          sql: 'SELECT * FROM `TestAnswers` where `test_id` =  ? AND `course_id` = ?',
+          timeout: 40000
+        },
+        [answer.tid, answer.cid],
+        function (error, results) {
+          fs.writeFile('public/json/studentsanswers.json', JSON.stringify(results), function (err) {
+            if (err) throw err;
+          });
+          if(results.length === 0) {
+            return callback('No one has not taken this test yet');
+          }
+          return callback(false);
+          if(error) {
+            console.error('error connecting: ' + error.stack);
+            return;
+          }
+
+      });
+     connection.release();
+    })
+}
+
 const registerAnswer = function(answer) {
   db(function(err, connection) {
         if(err) {
@@ -81,5 +111,6 @@ const registerAnswer = function(answer) {
 module.exports = {
   answersExists,
   getAnswers,
+  getAllAnswers,
   registerAnswer
 }
