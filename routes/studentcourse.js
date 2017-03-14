@@ -29,12 +29,13 @@ router.get('/tests', function(req, res) {
   courseTests.getTests(req.session.cnum.number, function(result){
     if(result){
       req.session.ctests = result;
-    } 
-      res.render('studentCourseTests', {layout: 'studentCourseView', name: req.session.result.name, cname: req.session.cnum.name, ctests: req.session.ctests, tans: req.session.tans, afail: req.session.afail});
+    }
+    res.render('studentCourseTests', {layout: 'studentCourseView', name: req.session.result.name, cname: req.session.cnum.name, ctests: req.session.ctests, tans: req.session.tans, afail: req.session.afail});
+    req.session.ctests = null;
+    req.session.tans = null;
+    req.session.afail = null;
   })
-  req.session.ctests = null;
-  req.session.tans = null;
-  req.session.afail = null;
+
 });
 
 router.get('/test/:testid', function(req, res) {
@@ -112,7 +113,6 @@ router.get('/grades', function(req, res) {
     req.session.ctests = null;
     req.session.ttNot = null;
   })
-
 });
 
 
