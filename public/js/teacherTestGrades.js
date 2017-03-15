@@ -62,5 +62,4 @@ $(function(){
     row += '</tr>'
     table.append(row);
   });
-  console.log(allPoints);
 });
